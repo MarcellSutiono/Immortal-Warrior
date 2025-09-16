@@ -11,12 +11,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private GameObject sword;
+    private Animator anim;
+
     private void Awake()
     {
         inputSystem = new PlayerInputSystem();
         inputSystem.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         inputSystem.Player.Move.canceled += ctx => moveInput = Vector2.zero;
+
         inputSystem.Player.Jump.performed += ctx =>jump();
+
+        inputSystem.Player.Attack.performed += ctx => anim.SetTrigger("Slice");
     }
 
     private void OnEnable()
@@ -32,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = sword.GetComponent<Animator>();
     }
 
     // Update is called once per frame
