@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8bceb5eb77f96e646b400ce29ce7bce6
+guid: a1213d3e2d31ae644a2f612fe6ce2f64
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3160665778588774710
-    second: sandbag_0
+      213: -3023766824798548878
+    second: GrassTile_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sandbag_0
+      name: GrassTile_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 5
-        width: 213
-        height: 414
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ace8b75683f0324d0800000000000000
-      internalID: -3160665778588774710
+      spriteID: 27c854ce71c6906d0800000000000000
+      internalID: -3023766824798548878
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      sandbag_0: -3160665778588774710
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
