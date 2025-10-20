@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e162c7ec84613d40a4950571041f32d, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  PlayerHealth: 100
   PlayerMovement: 4
   PlayerJumpForce: 5
+  PlayerRollSpeed: 20
+  PlayerRollDuration: 0.3
+  PlayerRollCooldown: 3
+  IsRolling: 0

@@ -1,12 +1,18 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //--------PLAYER DATA---------
     [SerializeField] private PlayerData pd;
-    private PlayerInputSystem inputSystem;
+
+    //--------MOVEMENT---------
     private Vector2 moveInput;
+
+    //--------GAMEOBJECT ---------
     private Rigidbody2D rb;
+    private BoxCollider2D playerCollider;
 
     //--------GROUND CHECK---------
     [SerializeField] private Transform groundCheck;
@@ -19,7 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        pd.IsRolling = false;
+
         rb = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
         anim = sword.GetComponent<Animator>();
     }
 
@@ -61,6 +70,45 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetTrigger("Slice");
         }
+    }
+
+    public void roll(InputAction.CallbackContext ctx)
+    {
+        if(!pd.IsRolling)
+        {
+            Debug.Log("rolling");
+            StartCoroutine(RollCoroutine());
+        }
+    }
+
+    private IEnumerator RollCoroutine()
+    {
+        pd.IsRolling = true;
+        gameObject.layer = LayerMask.NameToLayer("PlayerRolling");
+
+        Vector2 dir;
+        if (moveInput != Vector2.zero)
+        {
+            dir = new Vector2(moveInput.x, 0);
+        }
+        else
+        {
+            dir = new Vector2(1, 0);
+        }
+
+        float startTime = Time.time;
+        while (Time.time < startTime + pd.PlayerRollDuration)
+        {
+            
+            rb.linearVelocity = dir * pd.PlayerRollSpeed;
+            yield return null;
+        }
+
+        rb.linearVelocity = Vector3.zero;
+        gameObject.layer = LayerMask.NameToLayer("PlayerDefault");
+
+        yield return new WaitForSeconds(pd.PlayerRollCooldown);
+        pd.IsRolling = false;
     }
 
     private bool isGround()
