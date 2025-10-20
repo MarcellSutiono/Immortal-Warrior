@@ -12,14 +12,14 @@ public class PlayerMovement : MonoBehaviour
 
     //--------GAMEOBJECT ---------
     private Rigidbody2D rb;
-    private BoxCollider2D playerCollider;
+    private SpriteRenderer sr;
 
     //--------GROUND CHECK---------
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
 
-    [SerializeField] private GameObject sword;
+    //--------ANIMATOR---------
     private Animator anim;
 
 
@@ -27,9 +27,9 @@ public class PlayerMovement : MonoBehaviour
     {
         pd.IsRolling = false;
 
+        sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<BoxCollider2D>();
-        anim = sword.GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -39,9 +39,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void moveValueRead(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed)
+        if (ctx.performed)
         {
             moveInput = ctx.ReadValue<Vector2>();
+            if(moveInput.x < 0)
+            {
+                sr.flipX = true;
+            }
+            else if(moveInput.x > 0)
+            {
+                sr.flipX = false;
+            }
         }
         else if (ctx.canceled)
         {
@@ -64,11 +72,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void attack(InputAction.CallbackContext ctx)
+    public void attackRight(InputAction.CallbackContext ctx)
     {
+        sr.flipX = false;
         if (ctx.performed)
         {
-            anim.SetTrigger("Slice");
+            anim.SetTrigger("Attack");
+            pd.attackRight = true;
+            StartCoroutine(attackDuration());
+        }
+    }
+
+    public void attackLeft(InputAction.CallbackContext ctx)
+    {
+        sr.flipX = true;
+        if (ctx.performed)
+        {
+            anim.SetTrigger("Attack");
+            pd.attackLeft = true;
+            StartCoroutine(attackDuration());
         }
     }
 
@@ -109,6 +131,13 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(pd.PlayerRollCooldown);
         pd.IsRolling = false;
+    }
+
+    private IEnumerator attackDuration()
+    {
+        yield return new WaitForSeconds(1f);
+        pd.attackRight = false;
+        pd.attackLeft = false;
     }
 
     private bool isGround()
