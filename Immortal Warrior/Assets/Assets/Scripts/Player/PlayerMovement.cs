@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Rigidbody2D rb;
 
+    //--------GROUND CHECK---------
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
@@ -14,26 +16,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject sword;
     private Animator anim;
 
-    private void Awake()
-    {
-        inputSystem = new PlayerInputSystem();
-        inputSystem.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        inputSystem.Player.Move.canceled += ctx => moveInput = Vector2.zero;
-
-        inputSystem.Player.Jump.performed += ctx =>jump();
-
-        inputSystem.Player.Attack.performed += ctx => anim.SetTrigger("Slice");
-    }
-
-    private void OnEnable()
-    {
-        inputSystem.Player.Enable();
-    }
-
-    private void OnDisable()
-    {
-        inputSystem.Player.Disable();
-    }
 
     void Start()
     {
@@ -41,24 +23,43 @@ public class PlayerMovement : MonoBehaviour
         anim = sword.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        move();
+        moveCharacter();
     }
 
-    private void move()
+    public void moveValueRead(InputAction.CallbackContext ctx)
+    {
+        if(ctx.performed)
+        {
+            moveInput = ctx.ReadValue<Vector2>();
+        }
+        else if (ctx.canceled)
+        {
+            moveInput = Vector2.zero;
+        }
+    }
+
+    private void moveCharacter()
     {
         Vector2 movement = new Vector2(moveInput.x * pd.PlayerMovement, rb.linearVelocity.y);
         rb.linearVelocity = movement;
     }
 
-    private void jump()
+    public void jump(InputAction.CallbackContext ctx)
     {
-        if(isGround())
+        if (isGround())
         {
             Vector2 jumping = new Vector2(rb.linearVelocity.x, 1f * pd.PlayerJumpForce);
             rb.linearVelocity = jumping;
+        }
+    }
+
+    public void attack(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            anim.SetTrigger("Slice");
         }
     }
 
