@@ -7,7 +7,7 @@ public class Knight : Boss
         base.Start();
         MaxHealth = 150f;
         CurrentHealth = MaxHealth;
-        Speed = 2f;
+        Speed = 5f;
     }
 
     new void Update()
