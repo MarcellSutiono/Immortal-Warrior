@@ -4,6 +4,7 @@ public interface IEntity
 {
     public float MaxHealth { get; set; }
     public float CurrentHealth { get; set; }
+    public float Speed { get; set; }
 
     public void TakeDamage(float dmg);
     public void BasicAttack(float dmg);
