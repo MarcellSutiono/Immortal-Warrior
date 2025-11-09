@@ -8,12 +8,13 @@ public enum BossState
     Dead
 }
 
-public class Boss : MonoBehaviour, IEntity, IEnemyMoveable
+public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 {
     public BossState State { get; set; }
 
     private float moveTimer = 0;
     private float moveDuration = 0;
+    private float CooldownTimer = 0;
     private bool isMoving = false;
     private Vector2 moveVelocity;
     private GameObject player;
@@ -23,9 +24,12 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable
     [field: SerializeField] public float Speed { get; set; }
     [field: SerializeField] public float ChaseSpeed { get; set; }
     [field: SerializeField] public float Power { get; set; }
+    [field: SerializeField] public float Cooldown { get; set; }
 
     public Rigidbody2D RB { get; set; }
     [field: SerializeField] public Collider2D ChaseRadius { get; set; }
+    [field: SerializeField] public Collider2D AttackRadius { get; set; }
+
 
     protected void Start()
     {

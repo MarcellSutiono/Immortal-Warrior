@@ -9,6 +9,5 @@ public interface IEntity
     public float Power { get; set; }
 
     public void TakeDamage(float dmg);
-    public void BasicAttack(float dmg);
     public void death();
 }
