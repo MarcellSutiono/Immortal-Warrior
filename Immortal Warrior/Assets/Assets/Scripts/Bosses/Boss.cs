@@ -29,7 +29,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     [field: SerializeField] public float AttackDelay { get; set; }
     [field: SerializeField] public float AttackCooldown { get; set; }
     [field: SerializeField] public bool CanAttack { get; set; } = true;
-    [field: SerializeField] public bool CanMove { get; set; }
+    [field: SerializeField] public bool CanMove { get; set; } = true;
 
     public Rigidbody2D RB { get; set; }
     [field: SerializeField] public Collider2D ChaseRadius { get; set; }
@@ -37,7 +37,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
     protected void Start()
     {
-        State = BossState.Chasing;
+        State = BossState.Moving;
         player = GameObject.FindGameObjectWithTag("Player");
         RB = GetComponent<Rigidbody2D>();
         CurrentHealth = MaxHealth;
@@ -104,14 +104,16 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         {
             moveTimer = 0;
             isMoving = true;
-            int chance = Random.Range(0, 2);
-            switch (chance)
+            int dir = Random.Range(-1, 2);
+            switch (dir)
             {
-                case 0:
+                case -1:
                     moveVelocity = Vector2.left * Speed;
+                    FlipSprite(dir);
                     break;
                 case 1:
                     moveVelocity = Vector2.right * Speed;
+                    FlipSprite(dir);
                     break;
             }
         }
@@ -132,6 +134,14 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
         RB.linearVelocity = new Vector2(moveVelocity.x, RB.linearVelocity.y);
     }
+
+    public void FlipSprite(float dir)
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * dir;
+        transform.localScale = scale;
+    }
+
     private bool IsPlayerInChaseRadius()
     {
         return ChaseRadius.OverlapPoint(player.transform.position);
@@ -145,8 +155,10 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     public void Chase()
     {
         if (player == null) return;
+
         Vector2 diff = (player.transform.position - transform.position).normalized;
         float dir = 0;
+
         if(diff.x > 0)
         {
             dir = 1;
@@ -154,6 +166,11 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         else if(diff.x < 0)
         {
             dir = -1;
+        }
+
+        if (dir != 0)
+        {
+            FlipSprite(dir);
         }
 
         RB.linearVelocity = new Vector2(dir * ChaseSpeed, RB.linearVelocity.y);
