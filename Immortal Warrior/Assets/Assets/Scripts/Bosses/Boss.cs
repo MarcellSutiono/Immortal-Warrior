@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum BossState
@@ -14,22 +16,24 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
     private float moveTimer = 0;
     private float moveDuration = 0;
-    private float CooldownTimer = 0;
     private bool isMoving = false;
     private Vector2 moveVelocity;
     private GameObject player;
+    [field: SerializeField] public PlayerData pd { get; set; }
 
     [field: SerializeField] public float MaxHealth { get; set; }
     [field: SerializeField] public float CurrentHealth { get; set; }
     [field: SerializeField] public float Speed { get; set; }
     [field: SerializeField] public float ChaseSpeed { get; set; }
     [field: SerializeField] public float Power { get; set; }
-    [field: SerializeField] public float Cooldown { get; set; }
+    [field: SerializeField] public float AttackDelay { get; set; }
+    [field: SerializeField] public float AttackCooldown { get; set; }
+    [field: SerializeField] public bool CanAttack { get; set; } = true;
+    [field: SerializeField] public bool CanMove { get; set; }
 
     public Rigidbody2D RB { get; set; }
     [field: SerializeField] public Collider2D ChaseRadius { get; set; }
     [field: SerializeField] public Collider2D AttackRadius { get; set; }
-
 
     protected void Start()
     {
@@ -45,12 +49,15 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         {
             death();
         }
-
-        if(IsPlayerInChaseRadius())
+        else if(IsPlayerInAttackRadius())
+        {
+            State = BossState.BasicAttack;
+        }
+        else if(IsPlayerInChaseRadius() && CanMove)
         {
             State = BossState.Chasing;
         }
-        else
+        else if(CanMove)
         {
             State = BossState.Moving;
         }
@@ -130,6 +137,11 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         return ChaseRadius.OverlapPoint(player.transform.position);
     }
 
+    private bool IsPlayerInAttackRadius()
+    {
+        return AttackRadius.OverlapPoint(player.transform.position);
+    }
+
     public void Chase()
     {
         if (player == null) return;
@@ -149,6 +161,28 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
     public void BasicAttack(float dmg)
     {
-        
+        if (CanAttack)
+        {
+            CanAttack = false;
+            CanMove = false;
+            StartCoroutine(AttackRoutine(dmg));
+        }
+    }
+
+    private IEnumerator AttackRoutine(float dmg)
+    {
+        yield return new WaitForSeconds(AttackDelay);
+
+        if(IsPlayerInAttackRadius())
+        {
+            pd.PlayerHealth -= dmg;
+            Debug.Log("Player get damage: " + dmg);
+        }
+
+        CanMove = true;
+
+        yield return new WaitForSeconds(AttackCooldown);
+
+        CanAttack = true;
     }
 }
