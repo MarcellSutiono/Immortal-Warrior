@@ -1293,7 +1293,7 @@ MonoBehaviour:
   <AttackDelay>k__BackingField: 1
   <AttackCooldown>k__BackingField: 4
   <CanAttack>k__BackingField: 1
-  <CanMove>k__BackingField: 0
+  <CanMove>k__BackingField: 1
   <ChaseRadius>k__BackingField: {fileID: 1241243974}
   <AttackRadius>k__BackingField: {fileID: 764703126}
 --- !u!61 &1748966366
