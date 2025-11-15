@@ -20,7 +20,6 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     private Vector2 moveVelocity;
     private GameObject player;
     [field: SerializeField] public PlayerData pd { get; set; }
-
     [field: SerializeField] public float MaxHealth { get; set; }
     [field: SerializeField] public float CurrentHealth { get; set; }
     [field: SerializeField] public float Speed { get; set; }
@@ -30,6 +29,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     [field: SerializeField] public float AttackCooldown { get; set; }
     [field: SerializeField] public bool CanAttack { get; set; } = true;
     [field: SerializeField] public bool CanMove { get; set; } = true;
+    [field: SerializeField] public bool Immunity { get; set; } = false;
 
     public Rigidbody2D RB { get; set; }
     [field: SerializeField] public Collider2D ChaseRadius { get; set; }
@@ -83,7 +83,12 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
     public void TakeDamage(float dmg)
     {
-        CurrentHealth -= dmg;
+        if(!Immunity)
+        {
+            CurrentHealth -= dmg;
+            Immunity = true;
+            StartCoroutine(ImmuneDelay(2));
+        }
     }
 
     private void moveTimerCount()
@@ -154,7 +159,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
     public void Chase()
     {
-        if (player == null) return;
+        if (player == null || !CanMove) return;
 
         Vector2 diff = (player.transform.position - transform.position).normalized;
         float dir = 0;
@@ -201,5 +206,12 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         yield return new WaitForSeconds(AttackCooldown);
 
         CanAttack = true;
+    }
+
+    private IEnumerator ImmuneDelay(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+
+        Immunity = false;
     }
 }

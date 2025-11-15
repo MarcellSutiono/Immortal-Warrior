@@ -17,6 +17,7 @@ public class Knight : Boss
     new void Update()
     {
         base.Update();
+        healthBar.maxValue = MaxHealth;
         healthBar.value = CurrentHealth;
     }
 }

@@ -3,11 +3,11 @@ using UnityEngine;
 public class PlayerAttackRight : MonoBehaviour
 {
     public PlayerData pd;
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
-        if(pd.attackRight)
+        if(pd.attackRight && col.gameObject.CompareTag("BossHitbox"))
         {
-            Debug.Log("HIT RIGHT!");
+            col.GetComponentInParent<Boss>().TakeDamage(pd.PlayerPower);
         }
     }
 }

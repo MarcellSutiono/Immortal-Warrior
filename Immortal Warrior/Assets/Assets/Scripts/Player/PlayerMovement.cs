@@ -117,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + pd.PlayerRollDuration)
         {
-            
             rb.linearVelocity = dir * pd.PlayerRollSpeed;
             yield return null;
         }

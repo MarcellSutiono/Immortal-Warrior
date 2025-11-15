@@ -5,9 +5,9 @@ public class PlayerAttackLeft : MonoBehaviour
     public PlayerData pd;
     private void OnTriggerStay2D(Collider2D col)
     {
-        if(pd.attackLeft)
+        if(pd.attackLeft && col.gameObject.CompareTag("BossHitbox"))
         {
-            Debug.Log("HIT! LEFT");
+            col.GetComponentInParent<Boss>().TakeDamage(pd.PlayerPower);
         }
     }
 }
