@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerUIController : MonoBehaviour
 {
-    [SerializeField] public PlayerData pd;
-    [SerializeField] public Slider playerHealthBar;
+    public PlayerData pd;
+    public Slider playerHealthBar;
+    public GameObject loseUI;
 
     void Start()
     {
@@ -14,5 +16,18 @@ public class PlayerUIController : MonoBehaviour
     void Update()
     {
         playerHealthBar.value = pd.PlayerHealth;
+
+        if(pd.PlayerHealth <= 0)
+        {
+            Time.timeScale = 0f;
+            loseUI.SetActive(true);
+        }
+    }
+
+    public void restart()
+    {
+        StopAllCoroutines();
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

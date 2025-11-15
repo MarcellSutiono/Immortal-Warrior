@@ -294,4 +294,8 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
     }
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
 }

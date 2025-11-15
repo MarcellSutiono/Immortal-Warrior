@@ -13,6 +13,7 @@ public enum BossState
 public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 {
     public BossState State { get; set; }
+    public GameObject winUI;
 
     private float moveTimer = 0;
     private float moveDuration = 0;
@@ -82,7 +83,8 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
     public void death()
     {
-        Destroy(gameObject);
+        Time.timeScale = 0f;
+        winUI.SetActive(true);
     }
 
     public void TakeDamage(float dmg)
@@ -237,7 +239,10 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     private IEnumerator ImmuneDelay(float sec)
     {
         yield return new WaitForSeconds(sec);
-
         Immunity = false;
+    }
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }
