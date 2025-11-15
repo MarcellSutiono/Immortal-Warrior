@@ -80,6 +80,15 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Parry"",
+                    ""type"": ""Button"",
+                    ""id"": ""6a264164-8c5e-4ae8-a037-0c18dfc429db"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -203,6 +212,17 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Rolling"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""232a4bfa-1d2c-4e8d-9e04-3246cd3bb1ac"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -217,6 +237,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         m_Player_AttackLeft = m_Player.FindAction("AttackLeft", throwIfNotFound: true);
         m_Player_Charge = m_Player.FindAction("Charge", throwIfNotFound: true);
         m_Player_Rolling = m_Player.FindAction("Rolling", throwIfNotFound: true);
+        m_Player_Parry = m_Player.FindAction("Parry", throwIfNotFound: true);
     }
 
     ~@PlayerInputSystem()
@@ -289,6 +310,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_AttackLeft;
     private readonly InputAction m_Player_Charge;
     private readonly InputAction m_Player_Rolling;
+    private readonly InputAction m_Player_Parry;
     public struct PlayerActions
     {
         private @PlayerInputSystem m_Wrapper;
@@ -299,6 +321,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         public InputAction @AttackLeft => m_Wrapper.m_Player_AttackLeft;
         public InputAction @Charge => m_Wrapper.m_Player_Charge;
         public InputAction @Rolling => m_Wrapper.m_Player_Rolling;
+        public InputAction @Parry => m_Wrapper.m_Player_Parry;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -326,6 +349,9 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Rolling.started += instance.OnRolling;
             @Rolling.performed += instance.OnRolling;
             @Rolling.canceled += instance.OnRolling;
+            @Parry.started += instance.OnParry;
+            @Parry.performed += instance.OnParry;
+            @Parry.canceled += instance.OnParry;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -348,6 +374,9 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Rolling.started -= instance.OnRolling;
             @Rolling.performed -= instance.OnRolling;
             @Rolling.canceled -= instance.OnRolling;
+            @Parry.started -= instance.OnParry;
+            @Parry.performed -= instance.OnParry;
+            @Parry.canceled -= instance.OnParry;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -373,5 +402,6 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         void OnAttackLeft(InputAction.CallbackContext context);
         void OnCharge(InputAction.CallbackContext context);
         void OnRolling(InputAction.CallbackContext context);
+        void OnParry(InputAction.CallbackContext context);
     }
 }

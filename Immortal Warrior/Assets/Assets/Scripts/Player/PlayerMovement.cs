@@ -15,8 +15,6 @@ public class PlayerMovement : MonoBehaviour
 
     //--------CHARGE---------
     private bool isCharging = false;
-    private float chargeTime = 0f;
-    private float maxChargeTime = 3f;
     public GameObject[] chargeBars;
 
     //--------GAMEOBJECT ---------
@@ -95,36 +93,36 @@ public class PlayerMovement : MonoBehaviour
     {
         barClear();
 
-        if (chargeTime >= 0 && chargeTime < 0.5f)
+        if (pd.chargeTime >= 0 && pd.chargeTime < 0.5f)
         {
             activateBar(0);
         }
         
-        if(chargeTime >= 0.5f && chargeTime < 0.75f)
+        if(pd.chargeTime >= 0.5f && pd.chargeTime < 0.75f)
         {
             activateBar(1);
             pd.PlayerPower = pd.PlayerRawPower + (pd.PlayerRawPower * 50 / 100);
         }
         
-        if(chargeTime >= 0.75f && chargeTime < 1.25f)
+        if(pd.chargeTime >= 0.75f && pd.chargeTime < 1.25f)
         {
             activateBar(2);
             pd.PlayerPower = pd.PlayerRawPower + (pd.PlayerRawPower * 100 / 100);
         }
         
-        if(chargeTime >= 1.25f && chargeTime < 1.75f)
+        if(pd.chargeTime >= 1.25f && pd.chargeTime < 1.75f)
         {
             activateBar(3);
             pd.PlayerPower = pd.PlayerRawPower + (pd.PlayerRawPower * 200 / 100);
         }
         
-        if (chargeTime >= 1.75f && chargeTime < 2.75f)
+        if (pd.chargeTime >= 1.75f && pd.chargeTime < 2.75f)
         {
             activateBar(4);
             pd.PlayerPower = pd.PlayerRawPower + (pd.PlayerRawPower * 350 / 100);
         }
         
-        if(chargeTime >= 2.75f)
+        if(pd.chargeTime >= 2.75f)
         {
             activateBar(5);
             pd.PlayerPower = pd.PlayerRawPower + (pd.PlayerRawPower * 500 / 100);
@@ -132,12 +130,12 @@ public class PlayerMovement : MonoBehaviour
 
         if(!isCharging)
         {
-            chargeTime -= Time.deltaTime * 0.65f;
+            pd.chargeTime -= Time.deltaTime * 0.65f;
         }
 
-        if(chargeTime < 0f)
+        if(pd.chargeTime < 0f)
         {
-            chargeTime = 0f;
+            pd.chargeTime = 0f;
         }
 
     }
@@ -221,6 +219,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void parry(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            anim.SetTrigger("Parry");
+            pd.IsParrying = true;
+            StartCoroutine(parryTime(0.75f));
+        }
+    }
+
+    private IEnumerator parryTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        pd.IsParrying = false;
+    }
+
     private IEnumerator RollCoroutine()
     {
         pd.IsRolling = true;
@@ -253,7 +267,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator attackDuration()
     {
         isCharging = false;
-        chargeTime = 0f;
+        pd.chargeTime = 0f;
         barClear();
         yield return new WaitForSeconds(1f);
         pd.attackRight = false;
@@ -266,10 +280,10 @@ public class PlayerMovement : MonoBehaviour
         audioManager.playSFX(audioManager.charge);
         while(isCharging)
         {
-            chargeTime += Time.deltaTime;
-            if(chargeTime >= maxChargeTime)
+            pd.chargeTime += Time.deltaTime;
+            if(pd.chargeTime >= pd.maxChargeTime)
             {
-                chargeTime = maxChargeTime;
+                pd.chargeTime = pd.maxChargeTime;
             }
             yield return null;
         }

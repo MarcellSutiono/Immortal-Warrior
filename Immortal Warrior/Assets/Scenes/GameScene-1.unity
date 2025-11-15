@@ -14163,7 +14163,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.87
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.4
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -14935,6 +14935,7 @@ MonoBehaviour:
   charge: {fileID: 8300000, guid: 1a3c875513a60084d8ddcf7701c5b599, type: 3}
   hit: {fileID: 8300000, guid: 2fc3957e0b914cd4f8e63ca62f9512a5, type: 3}
   jump: {fileID: 8300000, guid: 4a67ebe8387c80947886da6a067235df, type: 3}
+  parry: {fileID: 8300000, guid: af2ffc192ae96ff4abf7fdcf0b988762, type: 3}
 --- !u!4 &1632072167
 Transform:
   m_ObjectHideFlags: 0
@@ -15058,6 +15059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c85496d1aa71a42ad6476865352958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioObject: {fileID: 1632072165}
   <pd>k__BackingField: {fileID: 11400000, guid: f6713ae3811b26c4ebe5dac9d96ceef0, type: 2}
   <MaxHealth>k__BackingField: 0
   <CurrentHealth>k__BackingField: 0
@@ -15790,7 +15792,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.4, y: 4.9}
+    oldSize: {x: 4.8, y: 4.9}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -16027,6 +16029,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0292df72-c17e-4df1-81da-d71466e927b2
     m_ActionName: 'Player/Charge[/Keyboard/l]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2044930132}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: parry
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6a264164-8c5e-4ae8-a037-0c18dfc429db
+    m_ActionName: 'Player/Parry[/Keyboard/p]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

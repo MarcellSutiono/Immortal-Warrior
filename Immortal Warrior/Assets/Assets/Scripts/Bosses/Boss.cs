@@ -19,6 +19,8 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     private bool isMoving = false;
     private Vector2 moveVelocity;
     private GameObject player;
+    public GameObject audioObject;
+    private AudioManager audioManager;
     [field: SerializeField] public PlayerData pd { get; set; }
     [field: SerializeField] public float MaxHealth { get; set; }
     [field: SerializeField] public float CurrentHealth { get; set; }
@@ -38,6 +40,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
     protected void Start()
     {
+        audioManager = audioObject.GetComponent<AudioManager>();
         State = BossState.Moving;
         player = GameObject.FindGameObjectWithTag("Player");
         RB = GetComponent<Rigidbody2D>();
@@ -205,8 +208,23 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
         if(IsPlayerInAttackRadius())
         {
-            pd.PlayerHealth -= dmg;
-            Debug.Log("Player get damage: " + dmg);
+            if (pd.IsParrying)
+            {
+                audioManager.playSFX(audioManager.parry);
+                if(pd.chargeTime < 3)
+                {
+                    pd.chargeTime += 1f;
+                    if(pd.chargeTime >= 3f)
+                    {
+                        pd.chargeTime = 3f;
+                    }
+                }
+            }
+            else
+            {
+                pd.PlayerHealth -= dmg;
+                Debug.Log("Player get damage: " + dmg);
+            }
         }
 
         CanMove = true;

@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip charge;
     public AudioClip hit;
     public AudioClip jump;
+    public AudioClip parry;
 
     private void Start()
     {

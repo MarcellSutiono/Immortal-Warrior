@@ -17,11 +17,16 @@ public class PlayerData : ScriptableObject
     //----ATTACK----
     public bool attackLeft = false;
     public bool attackRight = false;
+    public float chargeTime = 0f;
+    public float maxChargeTime = 3f;
 
     //----ROLLING----
     public float PlayerRollSpeed = 5f;
     public float PlayerRollDuration = 0.5f;
     public float PlayerRollCooldown = 3f;
     public bool IsRolling = false;
+
+    //----PARRY----
+    public bool IsParrying = false;
 
 }
