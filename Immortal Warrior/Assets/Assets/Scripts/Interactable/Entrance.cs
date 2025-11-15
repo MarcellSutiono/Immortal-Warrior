@@ -1,0 +1,77 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Entrance : MonoBehaviour
+{
+    public Transform target;
+    public GameObject player;
+    public GameObject bossUI;
+    public Image fadeTransition;
+    private bool playerInside = false;
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            playerInside = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            playerInside = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (playerInside && Input.GetKeyDown(KeyCode.E))
+        {
+            StartCoroutine(TeleportWithFade());
+        }
+    }
+
+    public IEnumerator FadeIn(float duration)
+    {
+        Color c = fadeTransition.color;
+        float t = 0;
+        
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            c.a = Mathf.Lerp(0, 1, t / duration);
+            fadeTransition.color = c;
+            yield return null;
+        }
+    }
+
+    public IEnumerator FadeOut(float duration)
+    {
+        Color c = fadeTransition.color;
+        float t = 0;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            c.a = Mathf.Lerp(1, 0, t / duration);
+            fadeTransition.color = c;
+            yield return null;
+        }
+    }
+
+
+    private IEnumerator TeleportWithFade()
+    {
+        yield return StartCoroutine(FadeIn(2f));
+
+        player.transform.position = target.position;
+        yield return new WaitForSeconds(0.5f);
+
+        yield return StartCoroutine(FadeOut(2f));
+
+        bossUI.SetActive(true);
+    }
+}
