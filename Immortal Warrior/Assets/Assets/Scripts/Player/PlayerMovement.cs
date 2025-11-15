@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(chargeTime);
         anim.SetFloat("xVelocity", MathF.Abs(moveInput.x));
         moveCharacter();
         barHandler();

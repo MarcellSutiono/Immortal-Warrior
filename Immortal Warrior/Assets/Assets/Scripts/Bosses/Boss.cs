@@ -159,7 +159,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
     public void Chase()
     {
-        if (player == null || !CanMove) return;
+        if (player == null || !CanAttack) return;
 
         Vector2 diff = (player.transform.position - transform.position).normalized;
         float dir = 0;
@@ -193,6 +193,8 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
     private IEnumerator AttackRoutine(float dmg)
     {
+        RB.linearVelocity = Vector2.zero;
+
         yield return new WaitForSeconds(AttackDelay);
 
         if(IsPlayerInAttackRadius())
