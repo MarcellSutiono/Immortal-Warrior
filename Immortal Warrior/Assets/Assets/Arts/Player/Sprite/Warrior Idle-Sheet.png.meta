@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: 49be4b5d3368eaa4b9050b840280cf08
+guid: 86ee4d65f575fe84aa6309691a1ffaeb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4779054054480243036
-    second: Warrior Run-Sheet_0
+      213: 7397088742326302636
+    second: Warrior Idle-Sheet_0
   - first:
-      213: -4482073820315569840
-    second: Warrior Run-Sheet_1
+      213: 7309604175680096657
+    second: Warrior Idle-Sheet_1
   - first:
-      213: 4925786047675232938
-    second: Warrior Run-Sheet_2
+      213: -5204392350764556344
+    second: Warrior Idle-Sheet_2
   - first:
-      213: -3112697756592380157
-    second: Warrior Run-Sheet_3
+      213: 6732207346366327465
+    second: Warrior Idle-Sheet_3
   - first:
-      213: -7990806104120097165
-    second: Warrior Run-Sheet_4
+      213: -668014473929895387
+    second: Warrior Idle-Sheet_4
   - first:
-      213: 1303949218820580542
-    second: Warrior Run-Sheet_5
-  - first:
-      213: 3110019186523618046
-    second: Warrior Run-Sheet_6
-  - first:
-      213: -4209279393655525936
-    second: Warrior Run-Sheet_7
+      213: 6812815042355838627
+    second: Warrior Idle-Sheet_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -117,17 +111,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Warrior Run-Sheet_0
+      name: Warrior Idle-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 340
-        height: 450
+        width: 240
+        height: 490
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a6904e26100c4f41af735c16189612c
-      internalID: 1444009513
+      spriteID: 6d3d73fbeb6ae774692c315e7b7ed97c
+      internalID: -2127577271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior Run-Sheet_1
+      name: Warrior Idle-Sheet_1
       rect:
         serializedVersion: 2
-        x: 350
+        x: 250
         y: 0
-        width: 340
-        height: 450
+        width: 240
+        height: 490
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +165,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f3b20b8b69945a4a849b51b6830e6d4
-      internalID: 1615716094
+      spriteID: fd59d4e7187215a43a2b2f176e473128
+      internalID: 1037963923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior Run-Sheet_2
+      name: Warrior Idle-Sheet_2
       rect:
         serializedVersion: 2
-        x: 700
+        x: 500
         y: 0
-        width: 340
-        height: 450
+        width: 240
+        height: 490
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 774148296c00793469cf7cb9a5983aff
-      internalID: 729577257
+      spriteID: 4837af9be1f2b914caa31224e7d7da34
+      internalID: -985126968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior Run-Sheet_3
+      name: Warrior Idle-Sheet_3
       rect:
         serializedVersion: 2
-        x: 1050
+        x: 750
         y: 0
-        width: 340
-        height: 450
+        width: 240
+        height: 490
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +209,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bde14bd282057b043a941f0bb9b911e2
-      internalID: 1494793683
+      spriteID: e3e18bc440c65524d9c01e5dc2851b85
+      internalID: -2132314537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior Run-Sheet_4
+      name: Warrior Idle-Sheet_4
       rect:
         serializedVersion: 2
-        x: 1400
+        x: 1000
         y: 0
-        width: 340
-        height: 450
+        width: 240
+        height: 490
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,20 +231,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d7f2dd324146b148b32ba94f285a0ec
-      internalID: -819073685
+      spriteID: 78621296856329e418528e7617eac5bc
+      internalID: -679982945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Warrior Run-Sheet_5
+      name: Warrior Idle-Sheet_5
       rect:
         serializedVersion: 2
-        x: 1750
+        x: 1250
         y: 0
-        width: 340
-        height: 450
+        width: 240
+        height: 490
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,52 +253,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70cb7fcd62b42614090e4de5dc3ecd7a
-      internalID: -2054813832
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior Run-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 2100
-        y: 0
-        width: 340
-        height: 450
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 156bfa2f5d2840f4098c0a602265def9
-      internalID: -846621446
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Warrior Run-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 2450
-        y: 0
-        width: 340
-        height: 450
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e53dc0efca205347a4cce3c29c99ee4
-      internalID: -1635804189
+      spriteID: bf1a09c34a793bc45a40ebd689f49f63
+      internalID: -1363109078
       vertices: []
       indices: 
       edges: []
@@ -300,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 58a3a4739bdc06d4e96ee80119416ef9
+    spriteID: 29d1c3ea5014e2048ae6f0503a48ad4a
     internalID: 0
     vertices: []
     indices: 
@@ -310,14 +273,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Warrior Run-Sheet_0: 1444009513
-      Warrior Run-Sheet_1: 1615716094
-      Warrior Run-Sheet_2: 729577257
-      Warrior Run-Sheet_3: 1494793683
-      Warrior Run-Sheet_4: -819073685
-      Warrior Run-Sheet_5: -2054813832
-      Warrior Run-Sheet_6: -846621446
-      Warrior Run-Sheet_7: -1635804189
+      Warrior Idle-Sheet_0: -2127577271
+      Warrior Idle-Sheet_1: 1037963923
+      Warrior Idle-Sheet_2: -985126968
+      Warrior Idle-Sheet_3: -2132314537
+      Warrior Idle-Sheet_4: -679982945
+      Warrior Idle-Sheet_5: -1363109078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

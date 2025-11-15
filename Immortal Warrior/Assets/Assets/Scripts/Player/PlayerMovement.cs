@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -34,26 +35,21 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        anim.SetFloat("xVelocity", MathF.Abs(moveInput.x));
         moveCharacter();
     }
 
     public void moveValueRead(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        moveInput = ctx.ReadValue<Vector2>();
+
+        if (moveInput.x < 0)
         {
-            moveInput = ctx.ReadValue<Vector2>();
-            if(moveInput.x < 0)
-            {
-                sr.flipX = true;
-            }
-            else if(moveInput.x > 0)
-            {
-                sr.flipX = false;
-            }
+            sr.flipX = true;
         }
-        else if (ctx.canceled)
+        else if (moveInput.x > 0)
         {
-            moveInput = Vector2.zero;
+            sr.flipX = false;
         }
     }
 
@@ -75,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
     public void attackRight(InputAction.CallbackContext ctx)
     {
         sr.flipX = false;
-        if (ctx.performed)
+        if (ctx.started)
         {
             anim.SetTrigger("Attack");
             pd.attackRight = true;
@@ -86,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
     public void attackLeft(InputAction.CallbackContext ctx)
     {
         sr.flipX = true;
-        if (ctx.performed)
+        if (ctx.started)
         {
             anim.SetTrigger("Attack");
             pd.attackLeft = true;
