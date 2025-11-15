@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: d28c504d6e2850d46a3a32350da5f762
+guid: 34092142fb8bf694692771764f5d263c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4202961862299361659
-    second: boss1_temp_0
+      213: -3130580410118074786
+    second: Warrior Charge-Sheet_0
+  - first:
+      213: -3423932326314222894
+    second: Warrior Charge-Sheet_1
+  - first:
+      213: -6249143906351048877
+    second: Warrior Charge-Sheet_2
+  - first:
+      213: 6319718986571793444
+    second: Warrior Charge-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +105,93 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss1_temp_0
+      name: Warrior Charge-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 331
-        height: 351
+        width: 320
+        height: 490
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 58ed12954741ca5c0800000000000000
-      internalID: -4202961862299361659
+      spriteID: 1643d98df872df9468fc49e30322a217
+      internalID: -1671684868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior Charge-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 0
+        width: 320
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 327190ce5b0f7f34396a4e1efffcf3c1
+      internalID: 108778874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior Charge-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 0
+        width: 320
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1433f73dcc7938740865d71fc47c0007
+      internalID: 933528677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior Charge-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 0
+        width: 320
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c743b59dad121a48bb30dbec01d8eb8
+      internalID: 1091001627
       vertices: []
       indices: 
       edges: []
@@ -138,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 75cc4aef2736b6c439542ea113e5d551
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      boss1_temp_0: -4202961862299361659
+      Warrior Charge-Sheet_0: -1671684868
+      Warrior Charge-Sheet_1: 108778874
+      Warrior Charge-Sheet_2: 933528677
+      Warrior Charge-Sheet_3: 1091001627
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
