@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   PlayerMaxHealth: 100
-  PlayerHealth: 100
-  PlayerMovement: 7
-  PlayerJumpForce: 7
+  PlayerHealth: 75
+  PlayerDefaultMovement: 5.3
+  PlayerMovement: 5.3
+  PlayerMovementCharging: 1.5
+  PlayerJumpForce: 6
+  PlayerRawPower: 5
   PlayerPower: 5
   attackLeft: 0
   attackRight: 0
-  PlayerRollSpeed: 20
+  PlayerRollSpeed: 15
   PlayerRollDuration: 0.3
   PlayerRollCooldown: 3
-  IsRolling: 0
+  IsRolling: 1

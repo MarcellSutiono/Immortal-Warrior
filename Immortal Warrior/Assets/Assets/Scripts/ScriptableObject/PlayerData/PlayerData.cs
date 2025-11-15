@@ -6,8 +6,10 @@ public class PlayerData : ScriptableObject
     public float PlayerMaxHealth = 100f;
     public float PlayerHealth = 100f;
 
-    public float PlayerMovement = 4f;
-    public float PlayerJumpForce = 5f;
+    public float PlayerDefaultMovement = 6f;
+    public float PlayerMovement = 6f;
+    public float PlayerMovementCharging = 1f;
+    public float PlayerJumpForce = 6f;
 
     public float PlayerRawPower = 5f;
     public float PlayerPower = 5f;

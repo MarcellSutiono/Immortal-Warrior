@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(!isCharging)
         {
-            chargeTime -= Time.deltaTime * 0.8f;
+            chargeTime -= Time.deltaTime * 0.65f;
         }
 
         if(chargeTime < 0f)
@@ -147,14 +147,14 @@ public class PlayerMovement : MonoBehaviour
         if(ctx.started)
         {
             anim.SetBool("isCharging", true);
-            pd.PlayerMovement = 1f;
+            pd.PlayerMovement = pd.PlayerMovementCharging;
             isCharging = true;
             StartCoroutine(chargingAttack());
         }
         else if(ctx.canceled)
         {
             anim.SetBool("isCharging", false);
-            pd.PlayerMovement = 7f;
+            pd.PlayerMovement = pd.PlayerDefaultMovement;
             isCharging = false;
         }
     }
