@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     //--------MOVEMENT---------
     private Vector2 moveInput;
+    private float stepTimer = 0f;
+    public float stepInterval = 0.2f;
 
     //--------CHARGE---------
     private bool isCharging = false;
@@ -23,33 +25,56 @@ public class PlayerMovement : MonoBehaviour
 
     //--------GROUND CHECK---------
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundRadius = 0.2f;
+    [SerializeField] private float groundRadius = 0.1f;
     [SerializeField] private LayerMask groundLayer;
 
     //--------ANIMATOR---------
     private Animator anim;
 
+    //--------AUDIO----------
+    public GameObject audioObject;
+    private AudioManager audioManager;
 
     void Start()
     {
         pd.IsRolling = false;
-
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audioManager = audioObject.GetComponent<AudioManager>();
     }
 
     void Update()
     {
         anim.SetFloat("xVelocity", MathF.Abs(moveInput.x));
+        StepSoundHandler();
         moveCharacter();
         barHandler();
+    }
+
+    private void StepSoundHandler()
+    {
+        bool isWalking = moveInput.x != 0 && isGround() && !isCharging;
+
+        if (isWalking)
+        {
+            stepTimer += Time.deltaTime;
+
+            if (stepTimer >= stepInterval)
+            {
+                audioManager.playSFX(audioManager.run);
+                stepTimer = 0f;
+            }
+        }
+        else
+        {
+            stepTimer = 0f;
+        }
     }
 
     public void moveValueRead(InputAction.CallbackContext ctx)
     {
         moveInput = ctx.ReadValue<Vector2>();
-
         if (moveInput.x < 0)
         {
             sr.flipX = true;
@@ -137,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGround())
         {
+            audioManager.playSFX(audioManager.jump);
             Vector2 jumping = new Vector2(rb.linearVelocity.x, 1f * pd.PlayerJumpForce);
             rb.linearVelocity = jumping;
         }
@@ -166,6 +192,7 @@ public class PlayerMovement : MonoBehaviour
         if (ctx.started)
         {
             anim.SetTrigger("Attack");
+            audioManager.playSFX(audioManager.hit);
             pd.attackRight = true;
             StartCoroutine(attackDuration());
         }
@@ -178,6 +205,7 @@ public class PlayerMovement : MonoBehaviour
         if (ctx.started)
         {
             anim.SetTrigger("Attack");
+            audioManager.playSFX(audioManager.hit);
             pd.attackLeft = true;
             StartCoroutine(attackDuration());
         }
@@ -188,6 +216,7 @@ public class PlayerMovement : MonoBehaviour
         if(!pd.IsRolling)
         {
             anim.SetTrigger("Roll");
+            audioManager.playSFX(audioManager.rolling);
             StartCoroutine(RollCoroutine());
         }
     }
@@ -234,6 +263,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator chargingAttack()
     {
+        audioManager.playSFX(audioManager.charge);
         while(isCharging)
         {
             chargeTime += Time.deltaTime;
@@ -243,6 +273,7 @@ public class PlayerMovement : MonoBehaviour
             }
             yield return null;
         }
+        audioManager.stopSFX();
     }
 
     private bool isGround()

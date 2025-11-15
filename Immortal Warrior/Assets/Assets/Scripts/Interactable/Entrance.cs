@@ -10,6 +10,9 @@ public class Entrance : MonoBehaviour
     public Image fadeTransition;
     private bool playerInside = false;
 
+    public GameObject audioObject;
+    private AudioManager audioManager;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
@@ -26,9 +29,14 @@ public class Entrance : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        audioManager = audioObject.GetComponent<AudioManager>();
+    }
+
     private void Update()
     {
-        if (playerInside && Input.GetKeyDown(KeyCode.E))
+        if (playerInside && Input.GetKeyDown(KeyCode.F))
         {
             StartCoroutine(TeleportWithFade());
         }
@@ -70,6 +78,7 @@ public class Entrance : MonoBehaviour
         player.transform.position = target.position;
         yield return new WaitForSeconds(0.5f);
 
+        audioManager.changeMusic(audioManager.gameMusic);
         yield return StartCoroutine(FadeOut(2f));
 
         bossUI.SetActive(true);

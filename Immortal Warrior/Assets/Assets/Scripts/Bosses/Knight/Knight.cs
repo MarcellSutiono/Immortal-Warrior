@@ -11,7 +11,7 @@ public class Knight : Boss
 
         MaxHealth = 150f;
         CurrentHealth = MaxHealth;
-        Power = 5f;
+        Power = 15f;
     }
 
     new void Update()
