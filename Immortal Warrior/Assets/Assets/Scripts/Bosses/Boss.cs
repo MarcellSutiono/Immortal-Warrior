@@ -33,6 +33,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
     public Rigidbody2D RB { get; set; }
     [field: SerializeField] public Collider2D ChaseRadius { get; set; }
+    [field: SerializeField] public Collider2D AttackTriggerRadius { get; set; }
     [field: SerializeField] public Collider2D AttackRadius { get; set; }
 
     protected void Start()
@@ -49,7 +50,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         {
             death();
         }
-        else if(IsPlayerInAttackRadius())
+        else if(IsPlayerInAttackTriggerRadius())
         {
             State = BossState.BasicAttack;
         }
@@ -150,6 +151,11 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     private bool IsPlayerInChaseRadius()
     {
         return ChaseRadius.OverlapPoint(player.transform.position);
+    }
+
+    private bool IsPlayerInAttackTriggerRadius()
+    {
+        return AttackTriggerRadius.OverlapPoint(player.transform.position);
     }
 
     private bool IsPlayerInAttackRadius()
