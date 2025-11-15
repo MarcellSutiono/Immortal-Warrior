@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!pd.IsRolling)
         {
-            Debug.Log("rolling");
+            anim.SetTrigger("Roll");
             StartCoroutine(RollCoroutine());
         }
     }

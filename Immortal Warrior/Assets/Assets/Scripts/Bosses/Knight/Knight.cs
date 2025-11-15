@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Knight : Boss
 {
     public Slider healthBar;
+
     new void Start()
     {
         base.Start();
@@ -16,7 +17,6 @@ public class Knight : Boss
     new void Update()
     {
         base.Update();
-
         healthBar.value = CurrentHealth;
     }
 }
