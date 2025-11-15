@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Charge",
+                    "type": "Button",
+                    "id": "0292df72-c17e-4df1-81da-d71466e927b2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Rolling",
                     "type": "Button",
                     "id": "a5297c00-2812-493e-9bb3-a6f025477d99",
@@ -148,6 +157,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "AttackLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47a62337-eb67-40dd-9228-8af349e4f20a",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Charge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

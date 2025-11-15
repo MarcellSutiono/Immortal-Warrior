@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerMaxHealth: 100
   PlayerHealth: 100
-  PlayerMovement: 4
-  PlayerJumpForce: 5
+  PlayerMovement: 7
+  PlayerJumpForce: 7
+  PlayerPower: 5
   attackLeft: 0
   attackRight: 0
   PlayerRollSpeed: 20

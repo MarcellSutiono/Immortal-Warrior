@@ -64,6 +64,15 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Charge"",
+                    ""type"": ""Button"",
+                    ""id"": ""0292df72-c17e-4df1-81da-d71466e927b2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Rolling"",
                     ""type"": ""Button"",
                     ""id"": ""a5297c00-2812-493e-9bb3-a6f025477d99"",
@@ -175,6 +184,17 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""47a62337-eb67-40dd-9228-8af349e4f20a"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Charge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4db3454a-2634-4195-9b9c-ed5398ed43dc"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
@@ -195,6 +215,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_AttackRight = m_Player.FindAction("AttackRight", throwIfNotFound: true);
         m_Player_AttackLeft = m_Player.FindAction("AttackLeft", throwIfNotFound: true);
+        m_Player_Charge = m_Player.FindAction("Charge", throwIfNotFound: true);
         m_Player_Rolling = m_Player.FindAction("Rolling", throwIfNotFound: true);
     }
 
@@ -266,6 +287,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_AttackRight;
     private readonly InputAction m_Player_AttackLeft;
+    private readonly InputAction m_Player_Charge;
     private readonly InputAction m_Player_Rolling;
     public struct PlayerActions
     {
@@ -275,6 +297,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @AttackRight => m_Wrapper.m_Player_AttackRight;
         public InputAction @AttackLeft => m_Wrapper.m_Player_AttackLeft;
+        public InputAction @Charge => m_Wrapper.m_Player_Charge;
         public InputAction @Rolling => m_Wrapper.m_Player_Rolling;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -297,6 +320,9 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @AttackLeft.started += instance.OnAttackLeft;
             @AttackLeft.performed += instance.OnAttackLeft;
             @AttackLeft.canceled += instance.OnAttackLeft;
+            @Charge.started += instance.OnCharge;
+            @Charge.performed += instance.OnCharge;
+            @Charge.canceled += instance.OnCharge;
             @Rolling.started += instance.OnRolling;
             @Rolling.performed += instance.OnRolling;
             @Rolling.canceled += instance.OnRolling;
@@ -316,6 +342,9 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @AttackLeft.started -= instance.OnAttackLeft;
             @AttackLeft.performed -= instance.OnAttackLeft;
             @AttackLeft.canceled -= instance.OnAttackLeft;
+            @Charge.started -= instance.OnCharge;
+            @Charge.performed -= instance.OnCharge;
+            @Charge.canceled -= instance.OnCharge;
             @Rolling.started -= instance.OnRolling;
             @Rolling.performed -= instance.OnRolling;
             @Rolling.canceled -= instance.OnRolling;
@@ -342,6 +371,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAttackRight(InputAction.CallbackContext context);
         void OnAttackLeft(InputAction.CallbackContext context);
+        void OnCharge(InputAction.CallbackContext context);
         void OnRolling(InputAction.CallbackContext context);
     }
 }

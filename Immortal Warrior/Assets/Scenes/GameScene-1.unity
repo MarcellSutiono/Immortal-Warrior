@@ -310,8 +310,8 @@ Transform:
   m_GameObject: {fileID: 99905093}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.548, y: 0, z: 0}
-  m_LocalScale: {x: 1.2719787, y: 2.6605127, z: 2.8402693}
+  m_LocalPosition: {x: -2.0558, y: 0, z: 0}
+  m_LocalScale: {x: 1.6899511, y: 2.6605127, z: 2.8402693}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2044930136}
@@ -375,6 +375,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pd: {fileID: 11400000, guid: f6713ae3811b26c4ebe5dac9d96ceef0, type: 2}
+--- !u!1 &212522772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 212522773}
+  - component: {fileID: 212522774}
+  m_Layer: 0
+  m_Name: Hitbox
+  m_TagString: BossHitbox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &212522773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212522772}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25, y: -0.24, z: 0}
+  m_LocalScale: {x: 3.9012809, y: 3.9012809, z: 3.9012809}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1748966364}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &212522774
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212522772}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!1 &296409246
 GameObject:
   m_ObjectHideFlags: 0
@@ -7531,8 +7600,8 @@ Transform:
   m_GameObject: {fileID: 1400189891}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.543, y: 0, z: 0}
-  m_LocalScale: {x: 1.2719787, y: 2.6605127, z: 2.8402693}
+  m_LocalPosition: {x: 2.0508, y: 0, z: 0}
+  m_LocalScale: {x: 1.6899511, y: 2.6605127, z: 2.8402693}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2044930136}
@@ -7927,6 +7996,7 @@ Transform:
   m_Children:
   - {fileID: 1241243973}
   - {fileID: 764703125}
+  - {fileID: 212522773}
   m_Father: {fileID: 772468674}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1748966365
@@ -7951,6 +8021,7 @@ MonoBehaviour:
   <AttackCooldown>k__BackingField: 4
   <CanAttack>k__BackingField: 1
   <CanMove>k__BackingField: 1
+  <Immunity>k__BackingField: 0
   <ChaseRadius>k__BackingField: {fileID: 1241243974}
   <AttackRadius>k__BackingField: {fileID: 764703126}
   healthBar: {fileID: 87223122}
@@ -8015,8 +8086,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.22305226, y: 0.09248495}
-  m_Size: {x: 1.7105527, y: 3.3250299}
+  m_Offset: {x: -0.22305226, y: -0.14221108}
+  m_Size: {x: 1.7105527, y: 3.2311523}
   m_Direction: 0
 --- !u!1 &1790259695
 GameObject:
@@ -8469,8 +8540,8 @@ Transform:
   m_GameObject: {fileID: 2044930131}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.7399, y: -2.2911, z: 0}
-  m_LocalScale: {x: 0.6718689, y: 0.6718689, z: 0.6718689}
+  m_LocalPosition: {x: -5.74, y: -2.2911, z: 0}
+  m_LocalScale: {x: 0.6478765, y: 0.6718689, z: 0.6718689}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1187778063}
@@ -8618,6 +8689,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fe11161a-15ab-45a5-a2f5-23f64bfde98a
     m_ActionName: 'Player/AttackLeft[/Keyboard/j]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2044930132}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: charge
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0292df72-c17e-4df1-81da-d71466e927b2
+    m_ActionName: 'Player/Charge[/Keyboard/l]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
