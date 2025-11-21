@@ -28,6 +28,6 @@ public class PlayerUIController : MonoBehaviour
     {
         StopAllCoroutines();
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(0);
     }
 }
