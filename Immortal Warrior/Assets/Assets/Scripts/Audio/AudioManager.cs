@@ -15,6 +15,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip jump;
     public AudioClip parry;
 
+    //-------- BOSS SFX --------
+    public AudioClip attackBoss;
+
     private void Start()
     {
         music.clip = outsideMusic;

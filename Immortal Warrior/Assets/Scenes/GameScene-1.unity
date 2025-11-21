@@ -15694,6 +15694,7 @@ MonoBehaviour:
   hit: {fileID: 8300000, guid: 2fc3957e0b914cd4f8e63ca62f9512a5, type: 3}
   jump: {fileID: 8300000, guid: 4a67ebe8387c80947886da6a067235df, type: 3}
   parry: {fileID: 8300000, guid: af2ffc192ae96ff4abf7fdcf0b988762, type: 3}
+  attackBoss: {fileID: 8300000, guid: 8d734c2516c48304daec83aeaf5418b8, type: 3}
 --- !u!4 &1632072167
 Transform:
   m_ObjectHideFlags: 0

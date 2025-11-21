@@ -214,6 +214,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         RB.linearVelocity = Vector2.zero;
 
         yield return new WaitForSeconds(AttackDelay);
+        audioManager.playSFX(audioManager.attackBoss);
 
         if(IsPlayerInAttackRadius())
         {
