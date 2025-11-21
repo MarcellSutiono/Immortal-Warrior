@@ -11,8 +11,8 @@ public class PlayerData : ScriptableObject
     public float PlayerMovementCharging = 1f;
     public float PlayerJumpForce = 6f;
 
-    public float PlayerRawPower = 5f;
-    public float PlayerPower = 5f;
+    public int PlayerRawPower = 5;
+    public int PlayerPower = 5;
 
     //----ATTACK----
     public bool attackLeft = false;

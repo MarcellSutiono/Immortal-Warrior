@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 {
     public BossState State { get; set; }
     public GameObject winUI;
+    public GameObject textDamage;
 
     private float moveTimer = 0;
     private float moveDuration = 0;
@@ -93,6 +95,9 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         {
             CurrentHealth -= dmg;
             Immunity = true;
+            GameObject dmgText = Instantiate(textDamage, transform.position, Quaternion.identity);
+            dmgText.transform.rotation = Quaternion.identity;
+            dmgText.transform.GetChild(0).GetComponent<TextMeshPro>().text = dmg.ToString();
             StartCoroutine(ImmuneDelay(2));
         }
     }

@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
         pd.IsRolling = false;
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
