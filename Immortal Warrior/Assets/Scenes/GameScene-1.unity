@@ -980,7 +980,7 @@ RectTransform:
   m_Father: {fileID: 1069750334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.000015258789, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1490,7 +1490,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.9, y: -0.87, z: -9.854775}
+  m_LocalPosition: {x: -247.67, y: -14.19, z: -9.854775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14841,7 +14841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1326659168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15409,15 +15409,15 @@ RectTransform:
   m_GameObject: {fileID: 1544007115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.460513, y: 0.460513, z: 0.460513}
+  m_LocalScale: {x: 0.27397752, y: 0.30921105, z: 0.27397752}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 569330100}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11, y: -34}
-  m_SizeDelta: {x: 353.073, y: 374.407}
+  m_AnchoredPosition: {x: 17.1, y: -48.1}
+  m_SizeDelta: {x: 520, y: 650.10254}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1544007117
 MonoBehaviour:
@@ -15439,7 +15439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4202961862299361659, guid: d28c504d6e2850d46a3a32350da5f762, type: 3}
+  m_Sprite: {fileID: 2073839894, guid: 19297c213f435054f962c50c8652b015, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15694,7 +15694,7 @@ MonoBehaviour:
   hit: {fileID: 8300000, guid: 2fc3957e0b914cd4f8e63ca62f9512a5, type: 3}
   jump: {fileID: 8300000, guid: 4a67ebe8387c80947886da6a067235df, type: 3}
   parry: {fileID: 8300000, guid: af2ffc192ae96ff4abf7fdcf0b988762, type: 3}
-  attackBoss: {fileID: 8300000, guid: 8d734c2516c48304daec83aeaf5418b8, type: 3}
+  attackBoss: {fileID: 8300000, guid: 77b702006056d9940b5225536d28a3c7, type: 3}
 --- !u!4 &1632072167
 Transform:
   m_ObjectHideFlags: 0
@@ -16441,7 +16441,7 @@ Transform:
   m_GameObject: {fileID: 1941419525}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.9, y: -0.87, z: 0.14522436}
+  m_LocalPosition: {x: -247.67, y: -14.19, z: 0.14522436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
