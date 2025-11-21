@@ -96,9 +96,12 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         {
             CurrentHealth -= dmg;
             Immunity = true;
-            GameObject dmgText = Instantiate(textDamage, transform.position, Quaternion.identity);
+
+            Vector2 playerOffset = new Vector2(transform.position.x + Random.Range(-1, 3), transform.position.y);
+            GameObject dmgText = Instantiate(textDamage, playerOffset, Quaternion.identity);
             dmgText.transform.rotation = Quaternion.identity;
             dmgText.transform.GetChild(0).GetComponent<TextMeshPro>().text = dmg.ToString();
+
             StartCoroutine(ImmuneDelay(2));
         }
     }
