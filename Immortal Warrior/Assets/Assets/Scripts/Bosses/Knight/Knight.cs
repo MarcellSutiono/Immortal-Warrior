@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ public class Knight : Boss
         MaxHealth = 150f;
         CurrentHealth = MaxHealth;
         Power = 20f;
+
+        anim = GetComponent<Animator>();
     }
 
     new void Update()
@@ -19,5 +22,7 @@ public class Knight : Boss
         base.Update();
         healthBar.maxValue = MaxHealth;
         healthBar.value = CurrentHealth;
+
+        anim.SetFloat("xVelocity", MathF.Abs(RB.linearVelocity.x));
     }
 }

@@ -8,6 +8,7 @@ public interface IEntity
     public float ChaseSpeed { get; set; }
     public float Power { get; set; }
     public bool Immunity { get; set; }
+    public Animator anim { get; set; }
 
     public void TakeDamage(float dmg);
     public void death();

@@ -20,7 +20,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     private float moveTimer = 0;
     private float moveDuration = 0;
     private bool isMoving = false;
-    private Vector2 moveVelocity;
+    public Vector2 moveVelocity;
     private GameObject player;
     public GameObject audioObject;
     private AudioManager audioManager;
@@ -40,6 +40,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     [field: SerializeField] public Collider2D ChaseRadius { get; set; }
     [field: SerializeField] public Collider2D AttackTriggerRadius { get; set; }
     [field: SerializeField] public Collider2D AttackRadius { get; set; }
+    public Animator anim { get; set; }
 
     protected void Start()
     {
@@ -154,7 +155,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     public void FlipSprite(float dir)
     {
         Vector3 scale = transform.localScale;
-        scale.x = Mathf.Abs(scale.x) * dir;
+        scale.x = Mathf.Abs(scale.x) * (dir * -1);
         transform.localScale = scale;
     }
 
@@ -203,6 +204,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         {
             CanAttack = false;
             CanMove = false;
+            anim.SetTrigger("Attack");
             StartCoroutine(AttackRoutine(dmg));
         }
     }
