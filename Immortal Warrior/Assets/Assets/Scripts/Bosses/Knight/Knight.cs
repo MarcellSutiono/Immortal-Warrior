@@ -5,12 +5,13 @@ using UnityEngine.UI;
 public class Knight : Boss
 {
     public Slider healthBar;
+    public GameObject door;
 
     new void Start()
     {
         base.Start();
 
-        MaxHealth = 150f;
+        MaxHealth = 50f;
         CurrentHealth = MaxHealth;
         Power = 20f;
 
@@ -24,5 +25,12 @@ public class Knight : Boss
         healthBar.value = CurrentHealth;
 
         anim.SetFloat("xVelocity", MathF.Abs(RB.linearVelocity.x));
+    }
+
+    public override void death()
+    {
+        audioManager.playSFX(audioManager.rockDoor);
+        door.SetActive(true);
+        Destroy(gameObject);
     }
 }

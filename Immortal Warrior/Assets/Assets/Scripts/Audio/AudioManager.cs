@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip parry;
     public AudioClip jumpAttack;
     public AudioClip bossJump;
+    public AudioClip rockDoor;
 
     //-------- BOSS SFX --------
     public AudioClip attackBoss;

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Door : MonoBehaviour
 {
+    public bool isFirstDoor = false;
     public Transform target;
     public GameObject player;
     public GameObject oldBossUI;
@@ -79,7 +80,9 @@ public class Door : MonoBehaviour
         player.transform.position = target.position;
         yield return new WaitForSeconds(0.5f);
 
-        audioManager.changeMusic(audioManager.gameMusic);
+        if(isFirstDoor)
+            audioManager.changeMusic(audioManager.gameMusic);
+            
         yield return StartCoroutine(FadeOut(2f));
 
         if(oldBossUI)

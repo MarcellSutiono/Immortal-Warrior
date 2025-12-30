@@ -38,7 +38,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     public Vector2 moveVelocity;
     private GameObject player;
     public GameObject audioObject;
-    private AudioManager audioManager;
+    public AudioManager audioManager;
     [field: SerializeField] public PlayerData pd { get; set; }
     [field: SerializeField] public float MaxHealth { get; set; }
     [field: SerializeField] public float CurrentHealth { get; set; }
@@ -143,7 +143,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         Debug.Log(jumpPrepareTimeCounter);
     }
 
-    public void death()
+    public virtual void death()
     {
         Time.timeScale = 0f;
 
@@ -289,7 +289,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
             {
                 pd.chargeTime += 1.2f;
                 pd.PlayerHealth += 5f;
-                
+
                 if(pd.chargeTime >= 3f)
                 {
                     pd.chargeTime = 3f;
