@@ -55,6 +55,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     [field: SerializeField] public Collider2D ChaseRadius { get; set; }
     [field: SerializeField] public Collider2D AttackTriggerRadius { get; set; }
     [field: SerializeField] public Collider2D AttackRadius { get; set; }
+    [field: SerializeField] public Collider2D JumpAttackRadius { get; set; }
     public Animator anim { get; set; }
 
     protected void Start()
@@ -79,11 +80,11 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         else if(!isJumping && IsPlayerInChaseRadius() && CanMove)
         {
             int chance = Random.Range(1, 101);
-            if(chance <= 30 && canJump && !jumpCooldown)
+            if(chance <= 10 && canJump && !jumpCooldown)
             {
                 State = BossState.Jump;
             }
-            else
+            else if(!isJumping)
             {
                 State = BossState.Chasing;
             }
@@ -125,8 +126,13 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
             Vector2 diff = (player.transform.position - transform.position).normalized;
             RB.linearVelocity = new Vector2(diff.x * jumpPower, jumpPower);
             FlipSprite(diff.x > 0 ? 1 : -1);
+
+            audioManager.playSFX(audioManager.bossJump);
+
             jumpCooldown = true;
             isJumping = false;
+
+            StartCoroutine(AirDelay());
             StartCoroutine(JumpDelay(jumpCooldownTime));
         }
     }
@@ -159,7 +165,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
             dmgText.transform.rotation = Quaternion.identity;
             dmgText.transform.GetChild(0).GetComponent<TextMeshPro>().text = dmg.ToString();
 
-            StartCoroutine(ImmuneDelay(2));
+            StartCoroutine(ImmuneDelay(1.5f));
         }
     }
 
@@ -234,6 +240,11 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         return AttackRadius.OverlapPoint(player.transform.position);
     }
 
+    private bool IsPlayerInJumpAttackRadius()
+    {
+        return JumpAttackRadius.OverlapPoint(player.transform.position);
+    }
+
     public void Chase()
     {
         if (player == null || !CanAttack) return;
@@ -269,6 +280,27 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         }
     }
 
+    private void DamagingPlayer(float dmg)
+    {
+        if (pd.IsParrying)
+        {
+            audioManager.playSFX(audioManager.parry);
+            if(pd.chargeTime < 3)
+            {
+                pd.chargeTime += 1f;
+                if(pd.chargeTime >= 3f)
+                {
+                    pd.chargeTime = 3f;
+                }
+            }
+        }
+        else
+        {
+            pd.PlayerHealth -= dmg;
+            Debug.Log("Player get damage: " + dmg);
+        }
+    }
+
     private IEnumerator AttackRoutine(float dmg)
     {
         RB.linearVelocity = Vector2.zero;
@@ -278,23 +310,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 
         if(IsPlayerInAttackRadius())
         {
-            if (pd.IsParrying)
-            {
-                audioManager.playSFX(audioManager.parry);
-                if(pd.chargeTime < 3)
-                {
-                    pd.chargeTime += 1f;
-                    if(pd.chargeTime >= 3f)
-                    {
-                        pd.chargeTime = 3f;
-                    }
-                }
-            }
-            else
-            {
-                pd.PlayerHealth -= dmg;
-                Debug.Log("Player get damage: " + dmg);
-            }
+            DamagingPlayer(dmg);
         }
 
         CanMove = true;
@@ -314,6 +330,16 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     {
         yield return new WaitForSeconds(sec);
         jumpCooldown = false;
+    }
+
+    private IEnumerator AirDelay()
+    {
+        yield return new WaitForSeconds(1.2f);
+        audioManager.playSFX(audioManager.jumpAttack);
+        if(IsPlayerInJumpAttackRadius())
+        {
+            DamagingPlayer(Power);
+        }
     }
 
     private void OnDestroy()
