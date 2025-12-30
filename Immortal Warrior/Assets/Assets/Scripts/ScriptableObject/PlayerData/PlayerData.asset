@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   PlayerMaxHealth: 100
-  PlayerHealth: 115
+  PlayerHealth: 5
   PlayerDefaultMovement: 5.3
   PlayerMovement: 5.3
   PlayerMovementCharging: 1.5
   PlayerJumpForce: 6
-  PlayerRawPower: 5
-  PlayerPower: 5
+  PlayerRawPower: 999
+  PlayerPower: 7
   attackLeft: 0
   attackRight: 0
   chargeTime: 0

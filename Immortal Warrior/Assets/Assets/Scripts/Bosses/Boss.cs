@@ -14,6 +14,7 @@ public enum BossState
 
 public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 {
+    public GameObject door;
     public bool lastBoss = false;
     
     //JUMP
@@ -56,6 +57,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
     [field: SerializeField] public Collider2D AttackTriggerRadius { get; set; }
     [field: SerializeField] public Collider2D AttackRadius { get; set; }
     [field: SerializeField] public Collider2D JumpAttackRadius { get; set; }
+
     public Animator anim { get; set; }
 
     protected void Start()
@@ -124,7 +126,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         {
             jumpPrepareTimeCounter = 0;
             Vector2 diff = (player.transform.position - transform.position).normalized;
-            RB.linearVelocity = new Vector2(diff.x * jumpPower, jumpPower);
+            RB.linearVelocity = new Vector2(diff.x * jumpPower, 5f);
             FlipSprite(diff.x > 0 ? 1 : -1);
 
             audioManager.playSFX(audioManager.bossJump);
@@ -143,15 +145,7 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         Debug.Log(jumpPrepareTimeCounter);
     }
 
-    public virtual void death()
-    {
-        Time.timeScale = 0f;
-
-        if(lastBoss)
-        {
-            winUI.SetActive(true);
-        }
-    }
+    public virtual void death(){}
 
     public void TakeDamage(float dmg)
     {

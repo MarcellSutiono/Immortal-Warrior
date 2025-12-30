@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Door : MonoBehaviour
 {
+    public GameObject newBoss;
     public bool isFirstDoor = false;
     public Transform target;
     public GameObject player;
@@ -75,20 +76,22 @@ public class Door : MonoBehaviour
 
     private IEnumerator TeleportWithFade()
     {
-        yield return StartCoroutine(FadeIn(2f));
+        yield return StartCoroutine(FadeIn(1f));
 
         player.transform.position = target.position;
         yield return new WaitForSeconds(0.5f);
 
         if(isFirstDoor)
             audioManager.changeMusic(audioManager.gameMusic);
-            
-        yield return StartCoroutine(FadeOut(2f));
+
+        yield return StartCoroutine(FadeOut(1f));
 
         if(oldBossUI)
             oldBossUI.SetActive(false);
 
         if(newBossUI)
             newBossUI.SetActive(true);
+
+        newBoss.SetActive(true);
     }
 }

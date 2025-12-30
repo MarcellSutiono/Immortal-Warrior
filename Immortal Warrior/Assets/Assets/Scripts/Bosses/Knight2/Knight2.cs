@@ -9,11 +9,7 @@ public class Knight2 : Boss
     new void Start()
     {
         base.Start();
-
-        MaxHealth = 200f;
         CurrentHealth = MaxHealth;
-        Power = 30f;
-
         anim = GetComponent<Animator>();
     }
 
@@ -24,5 +20,21 @@ public class Knight2 : Boss
         healthBar.value = CurrentHealth;
 
         anim.SetFloat("xVelocity", MathF.Abs(RB.linearVelocity.x));
+    }
+
+    public override void death()
+    {
+        if(lastBoss)
+        {
+            Time.timeScale = 0f;
+            winUI.SetActive(true);
+        }
+        else
+        {
+            audioManager.playSFX(audioManager.rockDoor);
+            door.SetActive(true);
+            Destroy(gameObject);
+        }
+
     }
 }

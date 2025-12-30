@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class Knight : Boss
 {
     public Slider healthBar;
-    public GameObject door;
 
     new void Start()
     {
