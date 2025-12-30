@@ -187,17 +187,17 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         {
             moveTimer = 0;
             isMoving = true;
-            int dir = Random.Range(-1, 2);
-            switch (dir)
+            int dir = Random.Range(1, 101);
+
+            if(dir <= 25)
             {
-                case -1:
-                    moveVelocity = Vector2.left * Speed;
-                    FlipSprite(dir);
-                    break;
-                case 1:
-                    moveVelocity = Vector2.right * Speed;
-                    FlipSprite(dir);
-                    break;
+                moveVelocity = Vector2.right * Speed;
+                FlipSprite(1);
+            }
+            else
+            {
+                moveVelocity = Vector2.left * Speed;
+                FlipSprite(-1);
             }
         }
 

@@ -11,7 +11,7 @@ public class Knight : Boss
     {
         base.Start();
 
-        MaxHealth = 50f;
+        MaxHealth = 150f;
         CurrentHealth = MaxHealth;
         Power = 20f;
 
