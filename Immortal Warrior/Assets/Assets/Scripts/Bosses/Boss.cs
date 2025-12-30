@@ -287,7 +287,9 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
             audioManager.playSFX(audioManager.parry);
             if(pd.chargeTime < 3)
             {
-                pd.chargeTime += 1f;
+                pd.chargeTime += 1.2f;
+                pd.PlayerHealth += 5f;
+                
                 if(pd.chargeTime >= 3f)
                 {
                     pd.chargeTime = 3f;

@@ -2,11 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Entrance : MonoBehaviour
+public class Door : MonoBehaviour
 {
     public Transform target;
     public GameObject player;
-    public GameObject bossUI;
+    public GameObject oldBossUI;
+    public GameObject newBossUI;
     public Image fadeTransition;
     private bool playerInside = false;
 
@@ -81,6 +82,10 @@ public class Entrance : MonoBehaviour
         audioManager.changeMusic(audioManager.gameMusic);
         yield return StartCoroutine(FadeOut(2f));
 
-        bossUI.SetActive(true);
+        if(oldBossUI)
+            oldBossUI.SetActive(false);
+
+        if(newBossUI)
+            newBossUI.SetActive(true);
     }
 }
