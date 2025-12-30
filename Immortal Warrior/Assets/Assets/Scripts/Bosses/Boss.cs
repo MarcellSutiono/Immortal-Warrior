@@ -8,15 +8,30 @@ public enum BossState
     Moving,
     BasicAttack,
     Chasing,
+    Jump,
     Dead
 }
 
 public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
 {
+    public bool lastBoss = false;
+    
+    //JUMP
+    public bool canJump = false;
+    public float jumpPrepareTime;
+    private float jumpPrepareTimeCounter;
+    private bool isJumping = false;
+    public float jumpPower;
+    private bool jumpCooldown = false;
+    public float jumpCooldownTime;
+
     public BossState State { get; set; }
+
+    //UI
     public GameObject winUI;
     public GameObject textDamage;
 
+    // MOVE
     private float moveTimer = 0;
     private float moveDuration = 0;
     private bool isMoving = false;
@@ -57,15 +72,23 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         {
             death();
         }
-        else if(IsPlayerInAttackTriggerRadius())
+        else if(!isJumping && IsPlayerInAttackTriggerRadius())
         {
             State = BossState.BasicAttack;
         }
-        else if(IsPlayerInChaseRadius() && CanMove)
+        else if(!isJumping && IsPlayerInChaseRadius() && CanMove)
         {
-            State = BossState.Chasing;
+            int chance = Random.Range(1, 101);
+            if(chance <= 30 && canJump && !jumpCooldown)
+            {
+                State = BossState.Jump;
+            }
+            else
+            {
+                State = BossState.Chasing;
+            }
         }
-        else if(CanMove)
+        else if(!isJumping && CanMove)
         {
             State = BossState.Moving;
         }
@@ -81,13 +104,47 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
             case BossState.BasicAttack:
                 BasicAttack(Power);
                 break;
+            case BossState.Jump:
+                BossJumpPrepareCounter();
+                BossJump();
+                break;
         }
+    }
+
+    private void BossJump()
+    {
+        if(!isJumping)
+        {
+            isJumping = true;
+            anim.SetTrigger("PrepareJump");
+        }
+
+        if(jumpPrepareTimeCounter >= jumpPrepareTime && !jumpCooldown)
+        {
+            jumpPrepareTimeCounter = 0;
+            Vector2 diff = (player.transform.position - transform.position).normalized;
+            RB.linearVelocity = new Vector2(diff.x * jumpPower, jumpPower);
+            FlipSprite(diff.x > 0 ? 1 : -1);
+            jumpCooldown = true;
+            isJumping = false;
+            StartCoroutine(JumpDelay(jumpCooldownTime));
+        }
+    }
+
+    private void BossJumpPrepareCounter()
+    {
+        jumpPrepareTimeCounter += Time.deltaTime;
+        Debug.Log(jumpPrepareTimeCounter);
     }
 
     public void death()
     {
         Time.timeScale = 0f;
-        winUI.SetActive(true);
+
+        if(lastBoss)
+        {
+            winUI.SetActive(true);
+        }
     }
 
     public void TakeDamage(float dmg)
@@ -252,6 +309,13 @@ public class Boss : MonoBehaviour, IEntity, IEnemyMoveable, IAttack
         yield return new WaitForSeconds(sec);
         Immunity = false;
     }
+
+    private IEnumerator JumpDelay(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        jumpCooldown = false;
+    }
+
     private void OnDestroy()
     {
         StopAllCoroutines();
